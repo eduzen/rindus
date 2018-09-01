@@ -1,0 +1,35 @@
+version: '3'
+
+volumes:
+  pgdata:
+
+services:
+  postgres:
+      restart: always
+      image: postgres:latest
+      ports:
+        - "5432:5432"
+      volumes:
+        - pgdata:/var/lib/postgresql/data/
+      environment:
+        - POSTGRES_PASSWORD=secret
+  rindus:
+      command: python3 manage.py runserver 0.0.0.0:8000
+      build: .
+      stop_signal: SIGINT
+      volumes:
+        - .:/code
+      ports:
+        - "8000:8000"
+      links:
+        - postgres
+      depends_on:
+        - postgres
+      environment:
+        - DB_USER=postgres
+        - DB_NAME=postgres
+        - DB_PASS=secret
+        - DB_SERVICE=postgres
+        - DJANGO_SETTINGS_MODULE=rindus.settings.development
+        - CLIENT_KEY=somekey
+        - CLIENT_SECRET=somekey

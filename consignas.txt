@@ -1,0 +1,26 @@
+
+To get a better understanding of your skills and the way you develop, we'd like
+to ask you to complete a programming task (see below).
+
+User Administration
+Please implement a small Django application to manage (CRUD) users and their bank
+account data (IBAN). Required fields are first name, last name and IBAN. Data should be validated.
+
+* Administrators of the app should authenticate using a Google account
+* Administrators should be able to create, read, update and delete users
+* Restrict manipulation operations on a user to the administrator who created them
+* Use PostgreSQL as the database backend
+* Use Python 3.x
+* Write documentation on how to setup, run and use your implementation
+
+Test environment
+Set up a virtual machine environment using vagrant
+(provisioned by Puppet/Salt/Ansible/Bash - whatever suits you best)
+or docker-compose to run the test task including some short documentation
+
+Please build the application in small logical steps and commit each step to a Github
+repository so that we can see how you approach the task. Make use of any libraries
+and third party apps that you think might be of use here.
+Please don't hesitate to contact us if you have any questions.
+We prefer a clean and well thought solution over a fast one.
+
