@@ -9,7 +9,7 @@ help:
 	@echo "build -- rebuild rindus image"
 	@echo "last-logs -- show tail of logs"
 	@echo "shell_plus -- run django shell_plus inside docker"
-	@echo "bootstrap --build containers, run django migrations, load fixtures and create the a superuser"
+	@echo "psql  -- run psql"
 
 start:
 	docker-compose up -d
@@ -49,4 +49,7 @@ shell_plus:
 build:
 	docker-compose build rindus
 
-.PHONY: help start stop ps clean test dockershell shell_plus only_test pep8 build last-logs
+psql:
+	docker-compose exec -e COLUMNS="`tput cols`" -e LINES="`tput lines`" postgres psql postgres postgres
+
+.PHONY: help start stop ps clean test dockershell shell_plus only_test pep8 build last-logs psql

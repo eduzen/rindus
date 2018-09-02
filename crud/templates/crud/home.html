@@ -1,9 +1,18 @@
 {% extends "crud/layout.html" %}
 
 {% block content %}
-	{% if user.is_authenticated %}
-             <p class="display-4">Hello, {{ user.username }}</p>
-	{% else %}
-             <a class="lead" href="{% url 'login' %}">Log in</a>
-	{% endif %}
+	<div class="container">
+		<div class="row">
+			<div class='col-xl'>
+			<hr>
+			{% if user.is_authenticated %}
+				<p class="display-4">Hello, {{ user.username }}</p>
+				<a class="lead" href="{% url 'logout' %}">Log out</a>
+			{% else %}
+				<p>You need to be register</p>
+				<a  class="lead" href="{% url 'login' %}">Log in</a>
+			{% endif %}
+			</div>
+		</div>
+	</div>
 {% endblock content %}

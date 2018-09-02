@@ -14,7 +14,7 @@ services:
       environment:
         - POSTGRES_PASSWORD=secret
   rindus:
-      command: python3 manage.py runserver 0.0.0.0:8000
+      command: python3 manage.py runserver_plus 0.0.0.0:8000
       build: .
       stop_signal: SIGINT
       volumes:
@@ -31,5 +31,3 @@ services:
         - DB_PASS=secret
         - DB_SERVICE=postgres
         - DJANGO_SETTINGS_MODULE=rindus.settings.development
-        - CLIENT_KEY=somekey
-        - CLIENT_SECRET=somekey
