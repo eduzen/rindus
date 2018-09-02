@@ -6,11 +6,43 @@
 			<div class='col-xl'>
 			<hr>
 			{% if user.is_authenticated %}
-				<p class="display-4">Hello, {{ user.username }}</p>
-				<a class="lead" href="{% url 'logout' %}">Log out</a>
+				<h4>Hello, {{ user.username }}! <a class="lead" href="{% url 'logout' %}">(log out)</a></h4>
+				<h5>User Administration</h5>
+				<p>List of users:</p>
+				{% if users %}
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">first name</th>
+								<th scope="col">last name</th>
+								<th scope="col">iban</th>
+								<th scope="col"></th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+					{% for usr in users %}
+						<tr>
+							<th scope="row">{{ usr.id }}</th>
+							<td>{{ usr.first_name }}</td>
+							<td>{{ usr.last_name }}</td>
+							<td>{{ usr.iban }}</td>
+							<td><a href="/user/{{usr.id}}"><i class="fas fa-user-edit"></i></a></td>
+							<td><a style='color: red;' href="/user/{{usr.id}}/delete/"><i class="fas fa-trash"></i></a></td>
+						</tr>
+					{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					<p>There are no users!</p>
+					<p>Add one</p>
+				{% endif %}
+				<p><a class="btn btn-success" href="{% url 'user-add' %}"><i class="fas fa-plus-square"></i> Add User</a></p>
+
 			{% else %}
-				<p>You need to be register</p>
-				<a  class="lead" href="{% url 'login' %}">Log in</a>
+				<p style='text-align: center;'>You need to be register <a class="lead" href="{% url 'login' %}">log in</a></p>
+
 			{% endif %}
 			</div>
 		</div>
