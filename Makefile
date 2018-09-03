@@ -27,7 +27,7 @@ clean: stop
 	docker-compose rm --force -v
 
 only_test:
-	docker-compose run --rm rindus python3 ./manage.py test  -v2 --noinput
+	docker-compose run --rm rindus pytest
 
 pep8:
 	docker-compose run --rm rindus flake8

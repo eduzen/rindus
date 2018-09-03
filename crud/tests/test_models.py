@@ -7,10 +7,12 @@ from crud.tests.factories import UserProfileFactory
 def test_user_count():
     assert UserProfile.objects.count() == 0
 
+
 @pytest.mark.django_db
 def test_user_create():
     UserProfileFactory.create()
     assert UserProfile.objects.count() == 1
+
 
 @pytest.mark.django_db
 def test_user_update():
