@@ -8,4 +8,5 @@ pytest-django
 pytest-sugar
 pytest-cov
 pytest-xdist
+codecov
 pdbpp
