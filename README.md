@@ -2,24 +2,26 @@
 
 ## Django application to manage (CRUD) users and their bank account data (IBAN).
 
-This project runs with `docker` (you can use traditional `virtualenv` but it's prepared out of the box for `docker`).
+This project runs with `docker` (you can use traditional `virtualenv` but it's prepared out of the box for `docker`). We choose Django 2.0 and Python 3.6 The database is a postgresql. We use the django templates for this exercise, because it easy to manage all the app only with python. However we prefer djangorestframework and a javascript framework for a production escenario.
 
 ### Installation:
 
-You need to install `docker` and `docker-compose` to run it. We use two images: `python 3.6` and `postgresql`. 
+You need to install `docker` and `docker-compose` to run it. We use two images: `python 3.6` and `postgresql`. We have a `Makefile` with some rules to manage the project. Some of them are: `start`, `stop`, `dockershell`, `shell_plus`, `psql`, `migrations`. 
 
-We have a `Makefile` with some rules for easy use:
+For example:
 
-* Flake8 and Tests
-`make test`
-
-* Run migrations and createsuper user:
+* To run tests and Flake8 inside of a container. Just run: 
+```bash
+make test
 ```
+
+* To run migrations and createsuper user:
+```bash
 make migrate
 make superuser
 ```
 
-* Configure Google login.
+* To configure Google login.
 
 1) Go to `localhost:8000/admin` and inside of it, go to Sites app and edit `example.com` register with `locahost:8000`. 
 
