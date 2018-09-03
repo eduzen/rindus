@@ -2,5 +2,5 @@ language: python
 python:
   - "3.6.4"
 install: "pip install -r dev_requirements.txt"
-script: pytest --cov=.
+script: pytest --cov=rindus --cov-config setup.cfg
 after_script: codecov
