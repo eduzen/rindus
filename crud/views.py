@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
+from django.http import Http404
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
@@ -26,7 +26,7 @@ class UserCreate(LoginRequiredMixin, CreateView):
     login_url = "/login/"
     redirect_field_name = "redirect_to"
     model = UserProfile
-    fields = ["first_name", "last_name", "iban"]
+    fields = ("first_name", "last_name", "iban")
     success_url = reverse_lazy("user-list")
 
     def form_valid(self, form):
@@ -44,7 +44,7 @@ class UserUpdate(LoginRequiredMixin, UpdateView):
     def get_object(self, *args, **kwargs):
         user = super(UserUpdate, self).get_object(*args, **kwargs)
         if not user.owner == self.request.user:
-            return HttpResponse('Unauthorized', status=401)
+            raise Http404()
 
         return user
 
@@ -62,6 +62,6 @@ class UserDelete(LoginRequiredMixin, DeleteView):
     def get_object(self, *args, **kwargs):
         user = super(UserDelete, self).get_object(*args, **kwargs)
         if not user.owner == self.request.user:
-            return HttpResponse('Unauthorized', status=401)
+            raise Http404()
 
         return user
