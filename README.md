@@ -1,3 +1,3 @@
 # rindus [![Build Status](https://travis-ci.org/eduzen/rindus.svg?branch=master)](https://travis-ci.org/eduzen/rindus)
-.. image:: https://codecov.io/gh/codecov/example-python/branch/master/graph/badge.svg
+[![codecov](https://codecov.io/gh/eduzen/rindus/branch/master/graph/badge.svg)](https://codecov.io/gh/eduzen/rindus)
 Django application to manage (CRUD) users and their bank account data (IBAN).
