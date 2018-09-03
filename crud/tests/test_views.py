@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.http.response import Http404
 import pytest
 
-from crud.views import UserListView, UserUpdate
+from crud.views import UserListView, UserUpdate, UserDelete
 
 VIEWS_URL = (
     reverse("user-list"),
@@ -67,3 +67,24 @@ def test_update_user(rf, user, superuser):
     response = UserUpdate.as_view()(request, pk=user.pk, data=post_data)
     assert response.status_code == 200
     assert response.context_data["object"].first_name == post_data["first_name"]
+
+
+def test_delete_other_user(rf, user, superuser):
+    request = rf.post(reverse("user-delete", args=(user.pk,)))
+    request.user = superuser
+    with pytest.raises(Http404) as response:
+        UserDelete.as_view()(request, pk=user.pk)
+
+    assert '404' in str(response)
+
+
+def test_delete_user(rf, user, superuser):
+    user.owner = superuser
+    user.save()
+
+    request = rf.post(reverse("user-update", args=(user.pk,)))
+    request.user = superuser
+    response = UserDelete.as_view()(request, pk=user.pk)
+
+    assert response.status_code == 302
+    assert '/user/' == response.url

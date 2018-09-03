@@ -27,6 +27,9 @@ ps:
 clean: stop
 	docker-compose rm --force -v
 
+coverage:
+	docker-compose run --rm rindus pytest --cov=.
+
 only_test:
 	docker-compose run --rm rindus pytest
 
