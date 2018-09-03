@@ -10,11 +10,15 @@ class UserListView(LoginRequiredMixin, generic.ListView):
     login_url = "/login/"
     redirect_field_name = "redirect_to"
     model = UserProfile
-    # queryset = Post.objects.published()
     context_object_name = "users"
     template_name = "crud/home.html"
     paginate_by = 5
     ordering = ["id"]
+
+    def get_queryset(self):
+        queryset = super(UserListView, self).get_queryset()
+        queryset = queryset.filter(owner=self.request.user)
+        return queryset
 
 
 class UserCreate(LoginRequiredMixin, CreateView):
