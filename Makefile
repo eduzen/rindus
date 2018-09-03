@@ -7,6 +7,7 @@ help:
 	@echo "test  -- run tests using docker"
 	@echo "dockershell -- run bash inside docker"
 	@echo "build -- rebuild rindus image"
+	@echo "superuser -- runs createsuperuser"
 	@echo "last-logs -- show tail of logs"
 	@echo "shell_plus -- run django shell_plus inside docker"
 	@echo "psql  -- run psql"
@@ -43,6 +44,9 @@ migrations:
 migrate:
 	docker-compose run --rm rindus python3 manage.py migrate
 
+superuser:
+	docker-compose run --rm rindus python3 manage.py createsuperuser
+
 shell_plus:
 	docker-compose run --rm rindus python3 manage.py shell_plus
 
@@ -52,4 +56,4 @@ build:
 psql:
 	docker-compose exec -e COLUMNS="`tput cols`" -e LINES="`tput lines`" postgres psql postgres postgres
 
-.PHONY: help start stop ps clean test dockershell shell_plus only_test pep8 build last-logs psql
+.PHONY: help start stop ps clean test dockershell shell_plus only_test pep8 build last-logs psql superuser
