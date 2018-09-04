@@ -2,7 +2,7 @@
 
 ## Django application to manage (CRUD) users and their bank account data (IBAN).
 
-This project runs with `docker` (you can use traditional `virtualenv` but it's prepared out of the box for `docker`). We choose Django 2.0 and Python 3.6 The database is a postgresql. We use the django templates for this exercise, because it easy to manage all the app only with python. However we prefer djangorestframework and a javascript framework for a production escenario.
+This project runs with `docker` (you can use traditional `virtualenv` but it's prepared out of the box for `docker`). We choose `Django 2.0` and `Python 3.6` The database is a `postgresql`. We use the django templates for this exercise, because it easy to manage all the app only with `python`. However we prefer `django-rest-framework` and a `javascript framework` for a production escenario.
 
 ### Requirements:
 
